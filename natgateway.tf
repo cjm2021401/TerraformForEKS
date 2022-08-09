@@ -1,11 +1,12 @@
-# EIP for NAT gateway(1)  
-resource "aws_eip" "nat_gateway_1" {
+# EIP for NAT gateway
+resource "aws_eip" "eip" {
   vpc  = true
-  tags = { Name = "${local.vpc_name}-natgw-1" }
+  tags = { Name = "${local.vpc_name}-natgw" }
 }
 
-# EIP for NAT gateway(2)  
-resource "aws_eip" "nat_gateway_2" {
-  vpc  = true
-  tags = { Name = "${local.vpc_name}-natgw-2" }
+# NAT gateway
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.eip.id
+  subnet_id     = aws_subnet.public[0].id 
+  tags          = { Name = "${local.vpc_name}-natgw" }
 }

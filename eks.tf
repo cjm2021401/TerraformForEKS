@@ -21,7 +21,7 @@ module "eks" {
   subnet_ids = aws_subnet.private[*].id
 
   cloudwatch_log_group_retention_in_days = 1
-
+#설치중 coredns수정 필요
   fargate_profiles = {
     default = {
       name = "default"
