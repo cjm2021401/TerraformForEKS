@@ -31,9 +31,6 @@ module "eks" {
         },
         {
           namespace = "default"
-        },
-        {
-          namespace = "mobility"
         }
       ]
     }
